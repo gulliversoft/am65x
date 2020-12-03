@@ -6,7 +6,7 @@
 
 #define AM65X_VERSION							10000		/* Version 1.00 */
 
-
+#define am65x_CORE_CLK_HZ						1100000
 
 typedef enum
 {
