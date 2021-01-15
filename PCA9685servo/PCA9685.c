@@ -1,6 +1,14 @@
+/*    PCA9685.c
+ *
+ *    Copyright 2020/2021 by Martin Shishkov (df6@gulliversoft.com)
+ *    This software is distributed under the GNU public license version 2
+ *    See also the file 'COPYING'.
+ *    Function    :   Hardware underlying interface
+ *
+ */
+
+
 #include "PCA9685.h"
-
-
 /******************************************************************************
 function:	
 	Set duty cycle

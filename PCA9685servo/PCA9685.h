@@ -1,3 +1,12 @@
+/*    PCA9685.h
+ *
+ *    Copyright 2020/2021 by Martin Shishkov (df6@gulliversoft.com)
+ *    This software is distributed under the GNU public license version 2
+ *    See also the file 'COPYING'.
+ *
+ */ 
+
+
 #ifndef _SERVO_H_
 #define _SERVO_H_
 

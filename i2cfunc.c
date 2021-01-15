@@ -1,24 +1,11 @@
-/*******************************
-* i2cfunc.c
-* wrapper for I2C functions
-Usually, i2c devices are controlled by a kernel driver. But it is also
-possible to access all devices on an adapter from userspace, through
-the /dev interface. Your OS needs to load the module i2c-dev at the boot time.
-In this case each registered i2c adapter gets a number, counting from 0. You can
-examine /sys/class/i2c-dev/ to see what number corresponds to which adapter.
-Alternatively, you can run "i2cdetect -l" to obtain a formatted list of all
-i2c adapters present on your system at a given time. i2cdetect is part of
-the i2c-tools package.
-see https://www.kernel.org/doc/Documentation/i2c/dev-interface
-
-Unfortunatelly all recomended smbus operations apart of i2c-smbus.h are accessible
-only at kernel level. But they are not accessible in userspace.
-Instead, get i2c-tools from lm-sensors and install it. If you are using Debian, just
-sudo apt-get install libi2c-dev
-In my case I took the libi2c-dev_4.1-1_arm64.deb see http://ftp.debian.org/debian/pool/main/i/i2c-tools/
-which requires the <i2c/smbus.h> inclusion
-and bind in the makefile with LIB = /usr/lib/aarch64-linux-gnu/libi2c.a
-*******************************/
+/*    i2cfunc.c
+ *
+ *    Copyright 2020/2021 by Martin Shishkov (df6@gulliversoft.com)
+ *    This software is distributed under the GNU public license version 2
+ *    See also the file 'COPYING'.
+ *    Function    :   Hardware underlying interface
+ *
+ */
 
 #include <stdio.h>
 #include <i2c/smbus.h>

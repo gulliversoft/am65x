@@ -1,9 +1,11 @@
-/*****************************************************************************
-* | File      	:   DEV_Config.h
-* | Author      :   
-* | Function    :   Hardware underlying interface
-* | Info        :
-*/
+/*    DEV_Config.h
+ *
+ *    Copyright 2020/2021 by Martin Shishkov (df6@gulliversoft.com)
+ *    This software is distributed under the GNU public license version 2
+ *    See also the file 'COPYING'.
+ *    Function    :   Hardware underlying interface
+ *
+ */
 
 #ifndef _DEV_CONFIG_H_
 #define _DEV_CONFIG_H_

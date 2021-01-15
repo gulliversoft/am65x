@@ -1,7 +1,11 @@
-/************************************
- * i2cfunc.h
- * func prototypes for I2C functions
- ************************************/
+/*    i2cfunc.h
+ *
+ *    Copyright 2020/2021 by Martin Shishkov (df6@gulliversoft.com)
+ *    This software is distributed under the GNU public license version 2
+ *    See also the file 'COPYING'.
+ *    Function    :   Hardware underlying interface with func prototypes for I2C
+ *
+ */
 #define bytes_to_u16(MSB,LSB) (((unsigned int) ((unsigned char) MSB)) & 255)<<8 | (((unsigned char) LSB)&255)
 
 // bus=4 for interface I2C on x10 of IOT2050A

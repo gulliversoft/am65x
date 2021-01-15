@@ -1,3 +1,12 @@
+/*    main.c
+ *
+ *    Copyright 2020/2021 by Martin Shishkov (df6@gulliversoft.com)
+ *    This software is distributed under the GNU public license version 2
+ *    See also the file 'COPYING'.
+ *    Function    :   demonstration example with 2 servos
+ *
+ */
+
 #include <stdio.h>      //printf()
 #include <stdlib.h>     //exit()
 #include <signal.h>
