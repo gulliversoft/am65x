@@ -1,4 +1,4 @@
-![am65x in action](http://m90905703-001-site1.htempurl.com/images/PSION.jpg)
+![am65x in action](https://github.com/gulliversoft/am65x/blob/main/doc/am65x.gif)
 # am65x
 
 This library is designed to be free for every one and easy-to-use, it is quite simple and providing reasonably speedy I/O.
@@ -17,7 +17,7 @@ In this release the I/O keeps limited to the scope of I2C functionality.
 The exercises PCA9685 and TSL2581 shall lead you through the basic concepts of am65x. Each individual configuration is taking place into separated device folder, where the DEV_Config.h describes the hardware underlying interface.
 
 ## Build information:
-This library is linux user space library and compiles for different ARM flavours and once for Intel/AMD x86_64. This multi platform support demands differentiation between native build system and upper level CMake generators.
+This library is a linux user space library and compiles for different ARM flavours and once for Intel/AMD x86_64. This multi platform support demands differentiation between native build system and upper level CMake generators.
 The build.sh is the script which you need to use for building. Each CMakeLists.txt describes the rules and sources behind. The Ninja is leveraged as CMake generator which creates the build.ninja in the release folder. In the next step Ninja launches to the native GNU gcc compiler and linker. 
 
 ##The demo projects:
