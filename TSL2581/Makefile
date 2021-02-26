@@ -2,17 +2,20 @@
 ### Author: Martin Shishkov, gulliversoft, 2020/2021 ####
 #########################################################
 
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
+root_path := $(subst $(current_dir)/Makefile,, $(mkfile_path))
+
 DIR_LIB = ../
-export DIR = $(DIR_LIB)
-DIR_BIN = ./bin
+DIR_BIN = ../build
 
 vpath %.c $(DIR_LIB)
-vpath %.c ${CURDIR}
+vpath %.c ${CURDIR}/src
 vpath %.h $(DIR_LIB)
-vpath %.h ${CURDIR}
+vpath %.h ${CURDIR}/src
 
-OBJ_C = $(wildcard ${DIR}/*.c)
-OBJ_C += $(wildcard ${CURDIR}/*.c)
+OBJ_C = $(wildcard ${DIR_LIB}/*.c)
+OBJ_C += $(wildcard ${CURDIR}/src/*.c)
 
 OBJ_O = $(patsubst %.c,${DIR_BIN}/%.o,$(notdir ${OBJ_C}))
 
@@ -22,7 +25,7 @@ CC = gcc
 
 CFLAGS = -g -O0 -Wall 
 
-LIB = /usr/lib/aarch64-linux-gnu/libi2c.a
+LIB = $(root_path)dependency/$(shell uname -m)/libi2c.a
 
 ${TARGET}:${OBJ_O}
 	@echo $(OBJ_O)

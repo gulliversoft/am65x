@@ -8,9 +8,9 @@
  */
 
 #include <stdio.h>
-#include <i2c/smbus.h>
+#include "smbus.h"
 #include <linux/i2c.h>
-#include <linux/i2c-dev.h>
+//#include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <string.h>
@@ -19,6 +19,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include "i2cfunc.h"
+
+#ifndef I2C_SLAVE
+#define I2C_SLAVE 0x0703
+#endif
 
 /******************************************************************************
 function:
@@ -216,7 +220,7 @@ int delay_ms(unsigned int msec)
 		fprintf(stderr, "delay_ms error: delay value needs to be less than 999\n");
 		msec = 999;
 	}
-	a.tv_nsec=((long)(msec))*1E6d;
+	a.tv_nsec=((long)(msec)) * 1000000.0;
 	a.tv_sec=0;
 	if ((ret = nanosleep(&a, NULL)) != 0)
 	{

@@ -34,7 +34,7 @@ extern "C" {
 
     extern int am65x_close(void);
 
-    extern unsigned int  am65x_version(void);
+    extern unsigned int am65x_version(void);
     
     /*! @} */
 
@@ -51,13 +51,13 @@ extern "C" {
       \return 1 if successful, 0 otherwise (perhaps because you are not running as root)
       \sa   am65x_i2c_end()
     */
-    extern int  am65x_i2c_begin(unsigned char bus, unsigned char addr);
+    extern int am65x_i2c_begin(unsigned char bus, unsigned char addr);
 
     /*! End I2C operations.
       I2C pins P1-03 (SDA) and P1-05 (SCL)
       are returned to their default INPUT behaviour.
     */
-    extern void  am65x_i2c_end(void);
+    extern void am65x_i2c_end(void);
 
     /*! Transfers any number of bytes to the currently selected I2C slave.
       (as previously set by \sa  am65x_i2c_setSlaveAddress)
@@ -66,8 +66,8 @@ extern "C" {
       \return reason see \ref  am65xI2CReasonCodes
     */
 
-	extern uint8_t  am65x_i2c_smbus_write(unsigned char * buf, uint32_t len);
-    extern uint8_t  am65x_i2c_write(unsigned char * buf, uint32_t len);
+    extern uint8_t am65x_i2c_smbus_write(unsigned char * buf, uint32_t len);
+    extern uint8_t am65x_i2c_write(unsigned char * buf, uint32_t len);
 
     /*! Transfers any number of bytes from the currently selected I2C slave.
       (as previously set by \sa  am65x_i2c_setSlaveAddress)
@@ -75,8 +75,8 @@ extern "C" {
       \param[in] len Number of bytes in the buf buffer, and the number of bytes to received.
       \return reason see \ref  am65xI2CReasonCodes
     */
-	extern uint8_t  am65x_i2c_smbus_read( unsigned char* buf, uint32_t len);
-    extern uint8_t  am65x_i2c_read( unsigned char* buf, uint32_t len);
+    extern uint8_t am65x_i2c_smbus_read( unsigned char* buf, uint32_t len);
+    extern uint8_t am65x_i2c_read( unsigned char* buf, uint32_t len);
     /*! @}  */
 #ifdef __cplusplus
 }
