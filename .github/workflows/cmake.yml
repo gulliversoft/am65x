@@ -24,6 +24,8 @@ jobs:
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         message( STATUS "Current folder: ${CMAKE_CURRENT_SOURCE_DIR}" )
         execute_process(COMMAND export PATH=${CMAKE_CURRENT_SOURCE_DIR}:$PATH)
+        execute_process(COMMAND cp -l ./PCA9685servo)
+        execute_process(COMMAND cp -l ./TSL2581)
         execute_process(COMMAND chmod +x ninja)
         execute_process(COMMAND ./ninja --version)
         execute_process(COMMAND ls -R)
