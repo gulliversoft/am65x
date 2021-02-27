@@ -3,7 +3,7 @@ name: CMake
 on: [push]
 
 env:
-  # 2021, Shishkov M.: Currently only this build type is hardcoded in the build.sh file
+  # 2021, Shishkov M.: Currently with only release build type hardcoded in the build.sh file
   BUILD_TYPE: Release
   WORKING-DIR: .
 
@@ -13,7 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
+    
+    - name: Prepare
+      working-directory: ${{env.WORKING-DIR}}
+      shell: cmake -P {0}
+      run: |
+        set(ninja_version "1.9.0")
+        set(ninja_suffix "linux.zip")
+        set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
+        file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
+        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
+      
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
