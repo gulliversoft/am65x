@@ -23,8 +23,9 @@ jobs:
         file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         message( STATUS "Current folder: ${CMAKE_CURRENT_SOURCE_DIR}" )
-        execute_process(COMMAND export PATH=${CMAKE_CURRENT_SOURCE_DIR}/ninja:$PATH)
+        execute_process(COMMAND export PATH=${CMAKE_CURRENT_SOURCE_DIR}:$PATH)
         execute_process(COMMAND chmod +x ninja)
+        ./ninja --version
         execute_process(COMMAND ls -R)
         
     - name: Build
