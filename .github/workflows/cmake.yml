@@ -1,0 +1,19 @@
+name: CMake
+
+on: [push]
+
+env:
+  # 2021, Shishkov M.: Currently only this build type is hardcoded in the build.sh file
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      working-directory: ${{github.workspace}}
+      shell: bash
+      run: build.sh
