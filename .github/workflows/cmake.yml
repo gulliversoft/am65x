@@ -10,9 +10,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2   
     
     - name: Prepare
       working-directory: ${{env.WORKING-DIR}}
@@ -24,9 +23,16 @@ jobs:
         file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         execute_process(COMMAND chmod +x ninja)
+        execute_process(COMMAND export PATH=$pwd:$PATH)
         execute_process(COMMAND ls -R)
-      
+        
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
-      run: ls -R | bash ./build.sh
+      run: bash ./build.sh
+      
+    - name: PostBuild
+      working-directory: ${{env.WORKING-DIR}}
+      shell: cmake -P {0}
+      run: execute_process(COMMAND ls -R)
+      
