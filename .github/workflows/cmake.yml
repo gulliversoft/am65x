@@ -23,7 +23,8 @@ jobs:
         set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
         file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
-        COMMAND chmod +x ninja
+        execute_process(COMMAND chmod +x ninja)
+        execute_process(COMMAND ls -R)
       
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
