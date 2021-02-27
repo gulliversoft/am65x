@@ -17,5 +17,4 @@ jobs:
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
-      run: |
-          ls -R | build.sh
+      run: ls -R | ./build.sh
