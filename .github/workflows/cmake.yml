@@ -23,6 +23,7 @@ jobs:
         file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         execute_process(COMMAND chmod +x ninja)
+        message( STATUS "Current folder: $pwd" )
         execute_process(COMMAND export PATH=$pwd:$PATH)
         execute_process(COMMAND ls -R)
         
