@@ -1,0 +1,59 @@
+name: CMake
+
+on: [push]
+
+env:
+  # 2021, Shishkov M.: Currently with only release build type hardcoded in the build.sh file
+  BUILD_TYPE: Release
+  WORKING-DIR: .
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2   
+    
+    - name: Prepare
+      working-directory: ${{env.WORKING-DIR}}
+      shell: cmake -P {0}
+      run: |
+        set(ninja_version "1.9.0")
+        set(ninja_suffix "linux.zip")
+        set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
+        file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
+        execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
+        execute_process(COMMAND chmod +x ninja)
+        execute_process(COMMAND ./ninja --version)
+        # ensures finding the corresponding ninja generator
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
+        execute_process(
+            COMMAND cmake
+              -S .
+              -B build
+              -D CMAKE_BUILD_TYPE=${env.BUILD_TYPE}
+              -G Ninja
+              -D CMAKE_MAKE_PROGRAM=${ninja_program}
+            RESULT_VARIABLE result
+          )
+          if (NOT result EQUAL 0)
+            message(FATAL_ERROR "Bad exit status")
+          endif()
+        
+    - name: Build
+      working-directory: ${{env.WORKING-DIR}}
+      shell: bash
+      run: bash ./build.sh $(pwd)/ninja
+      
+    - name: PostBuild
+      working-directory: ${{env.WORKING-DIR}}
+      shell: cmake -P {0}
+      run: |
+        execute_process(COMMAND ls -R)
+        execute_process(
+          COMMAND chmod +x PCA9685servo
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/Release/PCA9685servo 
+          RESULT_VARIABLE result
+        )
+        if (NOT result EQUAL 0)
+          message(FATAL_ERROR "Running tests failed!")
+        endif()
