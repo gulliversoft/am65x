@@ -24,9 +24,9 @@ jobs:
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         message( STATUS "Current folder: ${CMAKE_CURRENT_SOURCE_DIR}" )
         execute_process(COMMAND export PATH=${CMAKE_CURRENT_SOURCE_DIR}:$PATH)
-        execute_process(COMMAND cp -l ./PCA9685servo)
-        execute_process(COMMAND cp -l ./TSL2581)
         execute_process(COMMAND chmod +x ninja)
+        execute_process(COMMAND cp -l ninja ./PCA9685servo)
+        execute_process(COMMAND cp -l ninja ./TSL2581)
         execute_process(COMMAND ./ninja --version)
         execute_process(COMMAND ls -R)
         
@@ -36,7 +36,17 @@ jobs:
       run: bash ./build.sh
       
     - name: PostBuild
-      working-directory: ${{env.WORKING-DIR}}
+      working-directory: ${CMAKE_CURRENT_SOURCE_DIR}
       shell: cmake -P {0}
-      run: execute_process(COMMAND ls -R)
+      run: |
+        execute_process(COMMAND ls -R)
+        execute_process(
+          COMMAND chmod +x PCA9685servo
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/Release/PCA9685servo
+          RESULT_VARIABLE result
+        )
+        if (NOT result EQUAL 0)
+          message(FATAL_ERROR "Running tests failed!")
+        endif()
+      
       
