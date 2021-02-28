@@ -45,7 +45,7 @@ jobs:
       run: bash ./build.sh $(pwd)/ninja
       
     - name: PostBuild
-      working-directory: ${CMAKE_CURRENT_SOURCE_DIR}
+      working-directory: ${{env.WORKING-DIR}}
       shell: cmake -P {0}
       run: |
         execute_process(COMMAND ls -R)
