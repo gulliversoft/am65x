@@ -51,7 +51,7 @@ jobs:
         execute_process(COMMAND ls -R)
         execute_process(
           COMMAND chmod +x PCA9685servo
-          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/PCA9685servo
+          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/Release/PCA9685servo
           RESULT_VARIABLE result
         )
         if (NOT result EQUAL 0)
