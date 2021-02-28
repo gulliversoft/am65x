@@ -20,7 +20,17 @@ x86_64) toolchain="/../_toolchains/lin_4_lin.cmake";;
 *)     echo ARM;;
 esac
 
-echo "Gulliversoft 2021, Copyright M. Shishkov manage with:" $toolchain
+echo "Gulliversoft 2021, Copyright M. Shishkov manage with:" 
+
+$toolchain
+
+if [ "$#" = "1" ]; then
+        ninja_program="$1"
+else
+        ninja_program="ninja"
+fi 
+
+echo "CMake generator used:" $ninja_program
 
 pushd ./build
 echo "Build Product(s): am65x"
@@ -29,14 +39,14 @@ cmake \
 -G Ninja \
 -DPROJECT_ROOT:PATH=$(pwd)/.. \
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=$(pwd)$toolchain \
--DCMAKE_MAKE_PROGRAM:FILEPATH=ninja \
+-DCMAKE_MAKE_PROGRAM:FILEPATH=$ninja_program \
 -DCMAKE_BUILD_TYPE:STRING=Release \
 ..
 popd 
 
 pushd ./build/Release
 
-ninja
+$ninja_program
 
 popd 
 
