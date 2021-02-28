@@ -22,13 +22,23 @@ jobs:
         set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
         file(DOWNLOAD "${ninja_url}" ./ninja.zip SHOW_PROGRESS)
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
-        message( STATUS "Current folder: ${CMAKE_CURRENT_SOURCE_DIR}" )
-        execute_process(COMMAND export PATH=${CMAKE_CURRENT_SOURCE_DIR}:$PATH)
         execute_process(COMMAND chmod +x ninja)
-        execute_process(COMMAND cp -l ninja ./PCA9685servo)
-        execute_process(COMMAND cp -l ninja ./TSL2581)
         execute_process(COMMAND ./ninja --version)
-        execute_process(COMMAND ls -R)
+        set(ENV{CC} ${ { matrix.config.cc } })
+        set(ENV{CXX} ${ { matrix.config.cxx } })
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
+        execute_process(
+            COMMAND ${ cmake
+              -S .
+              -B build
+              -D CMAKE_BUILD_TYPE=${ { env.BUILD_TYPE } }
+              -G Ninja
+              -D CMAKE_MAKE_PROGRAM=${ninja_program}
+            RESULT_VARIABLE result
+          )
+          if (NOT result EQUAL 0)
+            message(FATAL_ERROR "Bad exit status")
+          endif()
         
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
