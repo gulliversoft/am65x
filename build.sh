@@ -29,7 +29,7 @@ cmake \
 -G Ninja \
 -DPROJECT_ROOT:PATH=$(pwd)/.. \
 -DCMAKE_TOOLCHAIN_FILE:FILEPATH=$(pwd)$toolchain \
--DCMAKE_MAKE_PROGRAM:FILEPATH=ninja \
+-DCMAKE_MAKE_PROGRAM:FILEPATH=${ninja_program} \
 -DCMAKE_BUILD_TYPE:STRING=Release \
 ..
 popd 
