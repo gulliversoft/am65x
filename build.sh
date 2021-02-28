@@ -21,6 +21,7 @@ x86_64) toolchain="/../_toolchains/lin_4_lin.cmake";;
 esac
 
 echo "Gulliversoft 2021, Copyright M. Shishkov manage with:" $toolchain
+echo "CMake generator used:" ${ninja_program}
 
 pushd ./build
 echo "Build Product(s): am65x"
