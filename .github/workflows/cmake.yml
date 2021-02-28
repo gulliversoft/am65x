@@ -24,7 +24,8 @@ jobs:
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         execute_process(COMMAND chmod +x ninja)
         execute_process(COMMAND ./ninja --version)
-        # file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
+        # ensures finding the corresponding ninja generator
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
         execute_process(
             COMMAND cmake
               -S .
@@ -41,9 +42,7 @@ jobs:
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
-      run: |
-        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
-        bash ./build.sh
+      run: bash ./build.sh $ENV{GITHUB_WORKSPACE}/ninja
       
     - name: PostBuild
       working-directory: ${CMAKE_CURRENT_SOURCE_DIR}
