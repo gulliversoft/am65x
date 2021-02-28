@@ -23,7 +23,7 @@ esac
 echo "Gulliversoft 2021, Copyright M. Shishkov manage with:" $toolchain
 
 if [ "$#" = "1" ]; then
-        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
+        ninja_program="$1"
 else
         ninja_program="ninja"
 fi 
