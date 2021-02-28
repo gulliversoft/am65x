@@ -24,11 +24,9 @@ jobs:
         execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf ./ninja.zip)
         execute_process(COMMAND chmod +x ninja)
         execute_process(COMMAND ./ninja --version)
-        set(ENV{CC} ${ { matrix.config.cc } })
-        set(ENV{CXX} ${ { matrix.config.cxx } })
         file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
         execute_process(
-            COMMAND ${ cmake
+            COMMAND cmake
               -S .
               -B build
               -D CMAKE_BUILD_TYPE=${ { env.BUILD_TYPE } }
