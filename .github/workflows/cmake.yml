@@ -29,7 +29,7 @@ jobs:
             COMMAND cmake
               -S .
               -B build
-              -D CMAKE_BUILD_TYPE=${ { env.BUILD_TYPE } }
+              -D CMAKE_BUILD_TYPE=${env.BUILD_TYPE}
               -G Ninja
               -D CMAKE_MAKE_PROGRAM=${ninja_program}
             RESULT_VARIABLE result
