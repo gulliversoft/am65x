@@ -24,8 +24,10 @@ echo "Gulliversoft 2021, Copyright M. Shishkov manage with:" $toolchain
 
 if [ "$#" = "1" ]; then
         ninja_program="$1"
+        ninja_relative= ../../$ninja_program
 else
         ninja_program="ninja"
+        ninja_relative=$ninja_program
 fi 
 
 echo "CMake generator used:" $ninja_program
@@ -44,7 +46,7 @@ popd
 
 pushd ./build/Release
 
-$ninja_program
+$ninja_relative
 
 popd 
 
