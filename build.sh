@@ -44,7 +44,7 @@ popd
 
 pushd ./build/Release
 
-ninja
+$ninja_program
 
 popd 
 
