@@ -42,7 +42,7 @@ jobs:
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
-      run: bash ./build.sh ninja
+      run: bash ./build.sh $(pwd)/ninja
       
     - name: PostBuild
       working-directory: ${CMAKE_CURRENT_SOURCE_DIR}
