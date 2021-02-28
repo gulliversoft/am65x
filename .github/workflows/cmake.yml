@@ -41,7 +41,9 @@ jobs:
     - name: Build
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
-      run: bash ./build.sh
+      run: |
+        file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/ninja" ninja_program)
+        bash ./build.sh
       
     - name: PostBuild
       working-directory: ${CMAKE_CURRENT_SOURCE_DIR}
