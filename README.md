@@ -1,5 +1,5 @@
 ![am65x in action](https://github.com/gulliversoft/am65x/blob/main/doc/am65x.gif)
-# am65x .
+# am65x
 
 This library is designed to be free for every one and easy-to-use, it is quite simple and providing reasonably speedy I/O.
 **am65x** is a userspace programming library for accessing all devices on an adapter from userspace, through the /dev interface.
