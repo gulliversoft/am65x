@@ -4,6 +4,12 @@ on:
   push:
       tags: v[1-9][0-9][1-9][0-9]
 
+permissions:
+  # This is required for requesting the OIDC token
+  id-token: write
+  # This is required for actions/checkout
+  contents: read
+
 env:
   # 2026, Shishkov M.: promotion based on v tag
   BUILD_TYPE: Release
