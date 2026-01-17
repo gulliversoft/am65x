@@ -45,8 +45,9 @@ jobs:
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
       run: bash ./build.sh $(pwd)/ninja
-      
-    - name: PostBuild
-      working-directory: ${{env.WORKING-DIR}}
-      run: echo "Success!"
-        # execute_process(COMMAND ls -R)
+   
+    - name: Archive artifact
+      uses: actions/upload-artifact@v6
+      with:
+        name: PCA9685servo
+        path: /build/Release/PCA9685servo/PCA9685servo
