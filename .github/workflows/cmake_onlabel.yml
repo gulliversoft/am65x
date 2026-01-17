@@ -50,4 +50,4 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: PCA9685servo
-        path: /build/Release/PCA9685servo/PCA9685servo
+        path: ${{env.WORKING-DIR}}/doc/am65x.gif
