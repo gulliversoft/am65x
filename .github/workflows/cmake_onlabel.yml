@@ -45,9 +45,14 @@ jobs:
       working-directory: ${{env.WORKING-DIR}}
       shell: bash
       run: bash ./build.sh $(pwd)/ninja
-   
-    - name: Archive artifact
-      uses: actions/upload-artifact@v6
+
+    - name: Set up JFrog CLI with OIDC
+      id: setup-jfrog-cli
+      uses: jfrog/setup-jfrog-cli@v4
       with:
-        name: PCA9685servo
-        path: ${{env.WORKING-DIR}}/doc/am65x.gif
+        JF_URL: ${{ env.JF_URL }}
+        oidc-provider-name: github-jfrog
+        oidc-audience: my-aud
+
+    - name: Upload artifact
+      run: jf rt upload "${{env.WORKING-DIR}}/doc/am65x.gif" my-repo/    
