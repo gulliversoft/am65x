@@ -49,11 +49,11 @@ jobs:
       shell: cmake -P {0}
       run: |
         execute_process(COMMAND ls -R)
-        execute_process(
-          COMMAND chmod +x PCA9685servo
-          WORKING_DIRECTORY ${{env.WORKING-DIR}}/build/Release/PCA9685servo 
-          RESULT_VARIABLE result
-        )
+        # execute_process(
+          # COMMAND chmod +x PCA9685servo
+          # WORKING_DIRECTORY ${{env.WORKING-DIR}}/build/Release/PCA9685servo 
+          # RESULT_VARIABLE result
+        # )
         if (NOT result EQUAL 0)
           message(FATAL_ERROR "Running tests failed!")
         endif()
