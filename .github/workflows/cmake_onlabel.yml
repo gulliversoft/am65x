@@ -49,10 +49,10 @@ jobs:
     - name: Set up JFrog CLI with OIDC
       id: setup-jfrog-cli
       uses: jfrog/setup-jfrog-cli@v4
-      with:
+      env:
         JF_URL: ${{ env.JF_URL }}
-        oidc-provider-name: github-jfrog
-        oidc-audience: my-aud
+      with:
+        oidc-provider-name: setup-jfrog-cli
 
     - name: Upload artifact
       run: jf rt upload "${{env.WORKING-DIR}}/doc/am65x.gif" my-repo/    
