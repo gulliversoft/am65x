@@ -48,5 +48,5 @@ jobs:
       
     - name: PostBuild
       working-directory: ${{env.WORKING-DIR}}
-      run:
-        execute_process(COMMAND ls -R)
+      run: echo "Success!"
+        # execute_process(COMMAND ls -R)
