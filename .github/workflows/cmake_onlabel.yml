@@ -50,7 +50,7 @@ jobs:
       id: setup-jfrog-cli
       uses: jfrog/setup-jfrog-cli@v4
       env:
-        JF_URL: ${{ env.JF_URL }}
+        JF_URL: https://trial1y5vze.jfrog.io
       with:
         oidc-provider-name: setup-jfrog-cli
 
