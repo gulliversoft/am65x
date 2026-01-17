@@ -61,4 +61,4 @@ jobs:
         oidc-provider-name: setup-jfrog-cli
 
     - name: Upload artifact
-      run: jf rt upload "${{env.WORKING-DIR}}/doc/am65x.gif" my-repo/    
+      run: jf rt upload "${{env.WORKING-DIR}}/doc/am65x.gif" am65x-dev/    
