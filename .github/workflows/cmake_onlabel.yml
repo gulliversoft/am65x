@@ -66,5 +66,5 @@ jobs:
        jf rt upload "${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif" am65x-dev
 
     - name: Download artifact
-     run: jf rt dl am65x-dev/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif 
-     #--build-name=my-build-name --build-number=18
+      run: jf rt dl am65x-dev/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif 
+      #--build-name=my-build-name --build-number=18
