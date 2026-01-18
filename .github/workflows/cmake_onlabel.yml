@@ -61,7 +61,6 @@ jobs:
 
     - name: Publish Build Information
       run: |
-        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
         # Collect environment variables for the build
         jf rt bce
         # Collect details from git and add them to the build
@@ -70,4 +69,7 @@ jobs:
         jf rt bp    
 
     - name: Upload artifact
-      run: jf rt upload "${{env.WORKING-DIR}}/doc/am65x.gif" am65x-dev/$RELEASE_VERSION
+      run: |
+        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/$RELEASE_VERSION/am65x.gif
+        jf rt upload "${{env.WORKING-DIR}}/$RELEASE_VERSION/am65x.gif" am65x-dev
