@@ -59,11 +59,7 @@ jobs:
       with:
         oidc-provider-name: setup-jfrog-cli
 
-    - name: Determine release version
-      id: vars
-      run: echo "tag=RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
     - name: Upload artifact
       run: |
-       mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/${{steps.vars.outputs.tag}}/am65x.gif
-       jf rt upload "${{env.WORKING-DIR}}/${{steps.vars.outputs.tag}}/am65x.gif" am65x-dev
+       mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif
+       jf rt upload "${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif" am65x-dev
