@@ -65,5 +65,5 @@ jobs:
 
     - name: Upload artifact
       run: |
-       mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/{{steps.vars.outputs.tag}}/am65x.gif
-       jf rt upload "${{env.WORKING-DIR}}/{{steps.vars.outputs.tag}}/am65x.gif" am65x-dev
+       mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/${{steps.vars.outputs.tag}}/am65x.gif
+       jf rt upload "${{env.WORKING-DIR}}/${{steps.vars.outputs.tag}}/am65x.gif" am65x-dev
