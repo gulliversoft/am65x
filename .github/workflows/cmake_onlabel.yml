@@ -61,5 +61,6 @@ jobs:
 
     - name: Upload artifact
       run: |
+       mkdir ${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}
        mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif
        jf rt upload "${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif" am65x-dev
