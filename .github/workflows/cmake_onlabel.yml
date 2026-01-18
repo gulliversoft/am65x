@@ -57,16 +57,7 @@ jobs:
       env:
         JF_URL: https://trial1y5vze.jfrog.io
       with:
-        oidc-provider-name: setup-jfrog-cli
-
-    - name: Publish Build Information
-      run: |
-        # Collect environment variables for the build
-        jf rt bce
-        # Collect details from git and add them to the build
-        jf rt bag
-        # Publish build info
-        jf rt bp    
+        oidc-provider-name: setup-jfrog-cli 
 
     - name: Upload artifact
       run: |
