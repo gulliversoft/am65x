@@ -13,6 +13,7 @@ permissions:
 env:
   BUILD_TYPE: Release
   WORKING-DIR: .
+  BUILD_NAME: Nightly
 
 jobs:
   build:
@@ -63,7 +64,7 @@ jobs:
       run: |
        mkdir ${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}
        mv ${{env.WORKING-DIR}}/doc/am65x.gif ${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif
-       jf rt upload "${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif" am65x-dev --build-name=${GITHUB_JOB_ID} --build-number=${{env.JFROG_CLI_CI_BRANCH}}
+       jf rt upload "${{env.WORKING-DIR}}/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif" am65x-dev --build-name=${{env.BUILD_NAME}} --build-number=${{env.JFROG_CLI_CI_BRANCH}}
 
     - name: Download artifact
-      run: jf rt dl am65x-dev/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif --build-name=${GITHUB_JOB_ID} --build-number=${{env.JFROG_CLI_CI_BRANCH}}
+      run: jf rt dl am65x-dev/${{env.JFROG_CLI_CI_BRANCH}}/am65x.gif --build-name=${{env.BUILD_NAME}} --build-number=${{env.JFROG_CLI_CI_BRANCH}}
