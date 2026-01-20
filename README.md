@@ -1,4 +1,6 @@
 ![am65x in action](https://github.com/gulliversoft/am65x/blob/main/doc/am65x.gif)
+![github actions](https://github.com/gulliversoft/am65x/blob/main/doc/workflows.png)
+
 # am65x
 
 This library is designed to be free for every one and easy-to-use, it is quite simple and providing reasonably speedy I/O.
